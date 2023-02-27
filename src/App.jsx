@@ -1,5 +1,13 @@
+import CssBaseline from "@mui/material/CssBaseline";
+import Navbar from "./components/Navbar";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <CssBaseline />
+      <Navbar />
+    </>
+  );
 };
 
 export default App;
