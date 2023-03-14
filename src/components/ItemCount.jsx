@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
 import { useState } from "react";
 
-const ItemCount = ({ stock, onAdd }) => {
-  const [count, setCount] = useState(1);
+const ItemCount = ({ stock, initial = 1, onAdd }) => {
+  const [count, setCount] = useState(initial);
 
   const increment = () => {
     setCount(count + 1);
