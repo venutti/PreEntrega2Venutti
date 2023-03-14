@@ -4,9 +4,7 @@ import ItemCount from "./ItemCount";
 const ItemDetail = ({ item }) => {
   const { title, description, pictureUrl, price, id } = item;
   return (
-    <Card
-      sx={{ maxWidth: "1000px", margin: 2, display: "flex", borderRadius: 3 }}
-    >
+    <Card sx={{ maxWidth: "1000px", display: "flex", borderRadius: 3 }}>
       <CardMedia
         component="img"
         sx={{ width: "30%", flexShrink: 0 }}
