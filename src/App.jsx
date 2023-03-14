@@ -2,14 +2,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
 import { Route, Routes } from "react-router-dom";
-import ItemCount from "./components/ItemCount";
 
 const App = () => {
   return (
     <>
       <CssBaseline />
       <Navbar />
-      <ItemCount stock={3} onAdd={(count) => console.log(count)} />
+
       <Routes>
         <Route
           path="/"
