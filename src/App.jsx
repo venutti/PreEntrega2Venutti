@@ -2,14 +2,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
 import { Route, Routes } from "react-router-dom";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 const App = () => {
   return (
     <>
       <CssBaseline />
       <Navbar />
+      <ItemDetailContainer />
 
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -24,7 +26,7 @@ const App = () => {
           path="/item/:id"
           element={<p>Contenedor del detalle del producto</p>}
         />
-      </Routes>
+      </Routes> */}
     </>
   );
 };
