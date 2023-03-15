@@ -1,10 +1,12 @@
 import { Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getProduct } from "../data/products";
 import ItemDetail from "./ItemDetail";
 
-const ItemDetailContainer = ({ id = 2 }) => {
+const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     getProduct(id).then((product) => setItem(product));

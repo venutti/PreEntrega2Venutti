@@ -3,21 +3,32 @@ import Box from "@mui/material/Box";
 import ItemList from "./ItemList";
 
 import { getProducts } from "../data/products";
-import { Skeleton } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    getProducts().then((items) => setProducts(items));
-  }, []);
+    setProducts([]); // Para dar un efecto de loading
+    getProducts().then((items) => {
+      if (id) {
+        setProducts(items.filter((product) => product.category === id));
+      } else {
+        setProducts(items);
+      }
+    });
+  }, [id]);
 
   return (
-    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
+    <Box sx={{ p: 2, display: "grid", placeContent: "center" }}>
       {products.length > 0 ? (
-        <ItemList items={products} />
+        <Grid container spacing={2}>
+          <ItemList items={products} />
+        </Grid>
       ) : (
-        <Skeleton variant="rounded" width="60%" height="300px" />
+        <Skeleton variant="rounded" width="600px" height="300px" />
       )}
     </Box>
   );
