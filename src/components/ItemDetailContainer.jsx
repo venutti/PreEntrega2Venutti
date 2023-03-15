@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     getProduct(id).then((product) => setItem(product));
-  }, []);
+  }, [id]);
 
   return (
     <Box sx={{ display: "grid", placeContent: "center", padding: 2 }}>
