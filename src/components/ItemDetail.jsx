@@ -1,8 +1,15 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { useState } from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
+  const [count, setCount] = useState(0);
   const { title, description, pictureUrl, price, id } = item;
+
+  const handleAdd = (countOnAdd) => {
+    setCount(countOnAdd);
+  };
+
   return (
     <Card sx={{ maxWidth: "1000px", display: "flex", borderRadius: 3 }}>
       <CardMedia
@@ -24,7 +31,7 @@ const ItemDetail = ({ item }) => {
             $ {price}
           </Typography>
         </Box>
-        <ItemCount stock={2} onAdd={(count) => console.log(count)} />
+        {count === 0 && <ItemCount stock={item.stock} onAdd={handleAdd} />}
       </CardContent>
     </Card>
   );

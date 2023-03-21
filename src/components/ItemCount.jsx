@@ -1,10 +1,11 @@
-import { Box, Button, ButtonGroup } from "@mui/material";
+import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import { useState } from "react";
 
 const ItemCount = ({ stock, initial = 1, onAdd }) => {
   const [count, setCount] = useState(initial);
 
   const increment = () => {
+    if (count >= stock) return;
     setCount(count + 1);
   };
 
@@ -27,6 +28,10 @@ const ItemCount = ({ stock, initial = 1, onAdd }) => {
         gap: "10px",
       }}
     >
+      <Typography sx={{ transform: "translateY(5px)", color: "#a3a3a3" }}>
+        {stock} en stock
+      </Typography>
+
       <ButtonGroup color="warning" variant="contained" disableElevation>
         <Button onClick={decrement}>-</Button>
         <Box
