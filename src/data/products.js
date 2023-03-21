@@ -8,6 +8,7 @@ const products = [
     description:
       "¡Conviértete en el rey de la noche con este impresionante disfraz de Drácula! Incluye una capa negra y elegante para que puedas deslumbrar en cualquier fiesta de Halloween. ¡Aterroriza a tus amigos y sorprende a todos con tu look escalofriante!",
     category: "clothes",
+    stock: 7,
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const products = [
     description:
       "Si quieres destacar en Halloween, este disfraz de Parca es la opción perfecta para ti. Este disfraz incluye una túnica negra larga y una capucha para que puedas dar un toque misterioso a tu look. ¡Prepárate para ser el centro de atención en cualquier fiesta!",
     category: "clothes",
+    stock: 5,
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const products = [
     description:
       "Si buscas un disfraz de Halloween original y divertido, este disfraz de payaso es perfecto para ti. Incluye una camisa de colores brillantes, unos pantalones a juego y un sombrero de payaso para completar tu look. ¡Sé el alma de la fiesta y diviértete con tus amigos con este disfraz alegre!",
     category: "clothes",
+    stock: 6,
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const products = [
     description:
       "Este disfraz de ángel es la elección perfecta para quienes buscan una apariencia elegante y celestial en Halloween. El disfraz incluye una túnica blanca, alas y una corona de flores para la cabeza. ¡Sorprende a todos con tu aspecto divino!",
     category: "clothes",
+    stock: 5,
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const products = [
     description:
       "Si buscas un disfraz elegante y sofisticado, el disfraz de geisha es la elección perfecta para ti. Incluye una kimono tradicional japonés, un abanico y una peluca de cabello negro largo. ¡Atrae todas las miradas y conviértete en el centro de atención de cualquier fiesta!",
     category: "clothes",
+    stock: 8,
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const products = [
     description:
       "Si buscas una apariencia cómoda y relajada, el disfraz de hippie es la opción ideal para ti. Incluye una camisa floreada, pantalones de campana y gafas de sol redondas. ¡Deja que tu estilo libre y relajado brille en Halloween con este disfraz divertido y fácil de usar!",
     category: "clothes",
+    stock: 5,
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const products = [
     description:
       "Ilumina tu casa en Halloween con esta calabaza decorativa iluminada. Ideal para colocar en la entrada o en el interior de tu hogar.",
     category: "deco",
+    stock: 13,
   },
   {
     id: 8,
@@ -78,6 +85,7 @@ const products = [
     description:
       "Asusta a tus invitados con esta araña gigante. Perfecta para decorar cualquier rincón de tu hogar en Halloween.",
     category: "deco",
+    stock: 31,
   },
   {
     id: 9,
@@ -88,6 +96,7 @@ const products = [
     description:
       "Crea un ambiente terrorífico en tu hogar con este esqueleto colgante. Perfecto para decorar cualquier espacio.",
     category: "deco",
+    stock: 17,
   },
 ];
 
