@@ -1,13 +1,16 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
+import { CartContext } from "../contexts/CartContext";
 
 const ItemDetail = ({ item }) => {
-  const [count, setCount] = useState(0);
-  const { title, description, pictureUrl, price, id } = item;
+  const [showCounter, setShowCounter] = useState(true);
+  const { title, description, pictureUrl, price } = item;
+  const { addToCart } = useContext(CartContext);
 
   const handleAdd = (countOnAdd) => {
-    setCount(countOnAdd);
+    addToCart(item, countOnAdd);
+    setShowCounter(false);
   };
 
   return (
@@ -31,7 +34,7 @@ const ItemDetail = ({ item }) => {
             $ {price}
           </Typography>
         </Box>
-        {count === 0 && <ItemCount stock={item.stock} onAdd={handleAdd} />}
+        {showCounter && <ItemCount stock={item.stock} onAdd={handleAdd} />}
       </CardContent>
     </Card>
   );
