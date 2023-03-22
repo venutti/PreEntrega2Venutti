@@ -1,16 +1,24 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../contexts/CartContext";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ item }) => {
-  const [showCounter, setShowCounter] = useState(true);
+  const [quantity, setQuantity] = useState(0);
   const { title, description, pictureUrl, price } = item;
   const { addToCart } = useContext(CartContext);
 
   const handleAdd = (countOnAdd) => {
+    setQuantity(countOnAdd);
     addToCart(item, countOnAdd);
-    setShowCounter(false);
   };
 
   return (
@@ -34,7 +42,23 @@ const ItemDetail = ({ item }) => {
             $ {price}
           </Typography>
         </Box>
-        {showCounter && <ItemCount stock={item.stock} onAdd={handleAdd} />}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {quantity === 0 ? (
+            <ItemCount stock={item.stock} onAdd={handleAdd} />
+          ) : (
+            <Link to="/cart">
+              <Button variant="contained" color="warning">
+                Terminar con mi compra
+              </Button>
+            </Link>
+          )}
+        </Box>
       </CardContent>
     </Card>
   );
