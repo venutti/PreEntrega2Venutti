@@ -117,3 +117,5 @@ function getProduct(id) {
 }
 
 export { getProducts, getProduct };
+
+export default products;
