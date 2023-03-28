@@ -1,23 +1,31 @@
-import { Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../data/products";
+import { getItemById } from "../services/database";
+
+import { Box, Skeleton } from "@mui/material";
 import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
-  const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const { id: itemID } = useParams();
 
+  const getItem = async () => {
+    setLoading(true);
+    const itemData = await getItemById(itemID);
+    setItem(itemData);
+    setLoading(false);
+  };
   useEffect(() => {
-    getProduct(id).then((product) => setItem(product));
-  }, [id]);
+    getItem();
+  }, [itemID]);
 
   return (
     <Box sx={{ display: "grid", placeContent: "center", padding: 2 }}>
-      {item ? (
-        <ItemDetail item={item} />
-      ) : (
+      {loading ? (
         <Skeleton variant="rounded" width={1000} height={350} />
+      ) : (
+        <ItemDetail item={item} />
       )}
     </Box>
   );

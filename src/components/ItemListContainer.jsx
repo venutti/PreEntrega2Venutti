@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import ItemList from "./ItemList";
-
-import { getProducts } from "../data/products";
-import { Grid, Skeleton } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { getAllItems, getItemsByCategory } from "../services/database";
+
+import { Grid, Skeleton, Box } from "@mui/material";
+import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
-  const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const { id: categoryID } = useParams();
+
+  const getProducts = async () => {
+    setLoading(true);
+    const productList = categoryID
+      ? await getItemsByCategory(categoryID)
+      : await getAllItems();
+    setProducts(productList);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setProducts([]); // Para dar un efecto de loading
-    getProducts().then((items) => {
-      if (id) {
-        setProducts(items.filter((product) => product.category === id));
-      } else {
-        setProducts(items);
-      }
-    });
-  }, [id]);
+    getProducts();
+  }, [categoryID]);
 
   return (
     <Box sx={{ p: 2, display: "grid", placeContent: "center" }}>
-      {products.length > 0 ? (
+      {loading ? (
+        <Skeleton variant="rounded" width="600px" height="300px" />
+      ) : (
         <Grid container spacing={2}>
           <ItemList items={products} />
         </Grid>
-      ) : (
-        <Skeleton variant="rounded" width="600px" height="300px" />
       )}
     </Box>
   );
