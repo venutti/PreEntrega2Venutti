@@ -1,44 +1,31 @@
-import {
-  Alert,
-  Box,
-  Button,
-  FormControl,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Container, Link, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { Link as RouterLink } from "react-router-dom";
 import { serverTimestamp } from "firebase/firestore";
 import { addOrder } from "../services/database";
+import ContactForm from "./ContactForm";
 
 const CheckOut = () => {
+  const handleSubmit = async (values) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log(values);
+  };
+  return (
+    <Container maxWidth="sm">
+      <Typography variant="h4" sx={{ textAlign: "center", my: 2 }}>
+        CHECHOUT
+      </Typography>
+      <Typography variant="h6" sx={{ textAlign: "center", my: 2 }}>
+        Complete los datos para finalizar la compra
+      </Typography>
+      <ContactForm onSubmit={handleSubmit} />
+    </Container>
+  );
+
   const { cartList } = useContext(CartContext);
 
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [orderID, setOrderID] = useState("");
-
-  const filledFields = name && lastName && email && phone;
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
 
   if (cartList.length === 0)
     return (
@@ -53,7 +40,9 @@ const CheckOut = () => {
       </Alert>
     );
 
+  // TODO: Mover lógica en un higher order component
   if (orderID) {
+    // TODO: REFACTORIZAR ALERTA => Nuevo componente
     return (
       <Alert severity="success" sx={{ maxWidth: "700px", m: "20px auto" }}>
         <Typography>
@@ -64,68 +53,33 @@ const CheckOut = () => {
   }
 
   const totalPrice = cartList.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, { price, quantity }) => total + price * quantity,
     0
   );
 
-  const handlePurchase = (event) => {
-    event.preventDefault();
-    const order = {
-      buyer: {
-        name,
-        lastName,
-        email,
-        phone,
-      },
-      items: cartList.map((item) => {
-        return {
-          id: item.id,
-          title: item.title,
-          price: item.price,
-          quantity: item.quantity,
-        };
-      }),
-      date: serverTimestamp(),
-      total: totalPrice,
-    };
-    addOrder(order).then((id) => setOrderID(id));
-  };
-
-  return (
-    <Box
-      component="form"
-      sx={{ display: "grid", maxWidth: "sm", gap: 2, mx: "auto" }}
-      onSubmit={handlePurchase}
-    >
-      <TextField
-        label="Nombre"
-        required
-        value={name}
-        onChange={handleNameChange}
-      />
-      <TextField
-        label="Apellido"
-        required
-        value={lastName}
-        onChange={handleLastNameChange}
-      />
-      <TextField
-        label="Email"
-        required
-        value={email}
-        onChange={handleEmailChange}
-      />
-      <TextField
-        label="Teléfono"
-        required
-        value={phone}
-        onChange={handlePhoneChange}
-      />
-      <Button type="submit" disabled={!filledFields} variant="contained">
-        Finalizar compra
-      </Button>
-    </Box>
-  );
+  // const handlePurchase = (event) => {
+  //   // TODO: MULTIPLES RESPONSABILIDADES => REFACTORIZAR (createOrder, submitOrder)
+  //   event.preventDefault();
+  //   const order = {
+  //     buyer: {
+  //       name,
+  //       lastName,
+  //       email,
+  //       phone,
+  //     },
+  //     items: cartList.map((item) => {
+  //       return {
+  //         id: item.id,
+  //         title: item.title,
+  //         price: item.price,
+  //         quantity: item.quantity,
+  //       };
+  //     }),
+  //     date: serverTimestamp(),
+  //     total: totalPrice,
+  //   };
+  //   addOrder(order).then((id) => setOrderID(id));
+  // };
 };
 
 export default CheckOut;
