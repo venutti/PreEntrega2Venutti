@@ -1,3 +1,8 @@
-import { getAllItems, getItemsByCategory, getItemById } from "./firestore";
+import {
+  getAllItems,
+  getItemsByCategory,
+  getItemById,
+  addOrder,
+} from "./firestore";
 
-export { getAllItems, getItemsByCategory, getItemById };
+export { getAllItems, getItemsByCategory, getItemById, addOrder };

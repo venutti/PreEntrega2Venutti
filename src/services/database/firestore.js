@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
@@ -6,17 +7,17 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import db from "../../../firebase/firebase";
+import db from "../firebase/firebase";
 
 const itemsCollection = collection(db, "items");
+const ordersCollection = collection(db, "orders");
 
-const itemsSnapshotToArray = (snapshot) => {
-  const itemsList = [];
-  snapshot.forEach((doc) => {
-    const item = { id: doc.id, ...doc.data() };
-    itemsList.push(item);
+const itemsSnapshotToArray = (itemsSnapshot) => {
+  const itemsArray = [];
+  itemsSnapshot.forEach((doc) => {
+    itemsArray.push({ id: doc.id, ...doc.data() });
   });
-  return itemsList;
+  return itemsArray;
 };
 
 const getAllItems = async () => {
@@ -41,4 +42,9 @@ const getItemById = async (id) => {
   }
 };
 
-export { getAllItems, getItemsByCategory, getItemById };
+const addOrder = async (order) => {
+  const orderRef = await addDoc(ordersCollection, order);
+  return orderRef.id;
+};
+
+export { getAllItems, getItemsByCategory, getItemById, addOrder };

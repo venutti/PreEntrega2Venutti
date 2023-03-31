@@ -77,6 +77,9 @@ const CartView = () => {
       <Typography variant="h5" align="center" fontWeight={600}>
         Total: ${totalPrice}
       </Typography>
+      <Button to="/checkout" component={RouterLink} variant="contained">
+        Realizar compra
+      </Button>
     </Box>
   );
 };

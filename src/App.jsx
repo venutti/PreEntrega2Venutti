@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import CartView from "./components/CartView";
+import CheckOut from "./components/CheckOut";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/category/:id" element={<ItemListContainer />} />
         <Route path="/item/:id" element={<ItemDetailContainer />} />
         <Route path="/cart" element={<CartView />} />
+        <Route path="/checkout" element={<CheckOut />} />
       </Routes>
     </>
   );
