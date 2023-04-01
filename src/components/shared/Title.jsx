@@ -4,7 +4,7 @@ const Title = ({ children }) => {
   return (
     <Typography
       variant="h4"
-      sx={{ textAlign: "center", my: 2, fontWeight: "600" }}
+      sx={{ textAlign: "center", mt: 3, mb: 1, fontWeight: "600" }}
     >
       {children}
     </Typography>
