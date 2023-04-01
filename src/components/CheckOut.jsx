@@ -5,27 +5,30 @@ import { Link as RouterLink } from "react-router-dom";
 import { serverTimestamp } from "firebase/firestore";
 import { addOrder } from "../services/database";
 import ContactForm from "./ContactForm";
+import Title from "./shared/Title";
+import Subtitle from "./shared/Subtitle";
+import EmptyCartAlert from "./alerts/EmptyCartAlert";
+import OrderConfirmationAlert from "./alerts/OrderConfirmationAlert";
 
 const CheckOut = () => {
+  const [orderID, setOrderID] = useState("");
+
   const handleSubmit = async (values) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(values);
+    setOrderID("123456");
   };
+
+  if (orderID) return <OrderConfirmationAlert orderID={orderID} />;
+
   return (
     <Container maxWidth="sm">
-      <Typography variant="h4" sx={{ textAlign: "center", my: 2 }}>
-        CHECHOUT
-      </Typography>
-      <Typography variant="h6" sx={{ textAlign: "center", my: 2 }}>
-        Complete los datos para finalizar la compra
-      </Typography>
+      <Title>CHECKOUT</Title>
+      <Subtitle>Complete los datos para finalizar la compra</Subtitle>
       <ContactForm onSubmit={handleSubmit} />
     </Container>
   );
 
   const { cartList } = useContext(CartContext);
-
-  const [orderID, setOrderID] = useState("");
 
   if (cartList.length === 0)
     return (
