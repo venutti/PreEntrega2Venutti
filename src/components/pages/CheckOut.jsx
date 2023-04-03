@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
-import { CartContext } from "../contexts/CartContext";
-import { createOrder, addOrder } from "../services/database";
+import { CartContext } from "../../contexts/CartContext";
+import { createOrder, addOrder } from "../../services/database";
 
 import { Container } from "@mui/material";
-import ContactForm from "./ContactForm";
-import Title from "./shared/Title";
-import Subtitle from "./shared/Subtitle";
-import EmptyCartAlert from "./alerts/EmptyCartAlert";
-import OrderConfirmationAlert from "./alerts/OrderConfirmationAlert";
-import PurchaseResume from "./PurchaseResume";
+import ContactForm from "../ContactForm";
+import Title from "../shared/Title";
+import Subtitle from "../shared/Subtitle";
+import EmptyCartAlert from "../alerts/EmptyCartAlert";
+import OrderConfirmationAlert from "../alerts/OrderConfirmationAlert";
+import PurchaseResume from "../PurchaseResume";
 
 const CheckOut = () => {
   const { cartList } = useContext(CartContext);
