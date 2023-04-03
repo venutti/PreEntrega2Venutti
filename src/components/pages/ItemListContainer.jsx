@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAllItems, getItemsByCategory } from "../services/database";
+import { getAllItems, getItemsByCategory } from "../../services/database";
 
 import { Grid, Skeleton, Box } from "@mui/material";
-import ItemList from "./ItemList";
+import ItemList from "../ItemList";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);

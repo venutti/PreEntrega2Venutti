@@ -1,4 +1,5 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
+import DarkPanel from "./shared/DarkPanel";
 import Subtitle from "./shared/Subtitle";
 
 const PurchaseResume = ({ cartList }) => {
@@ -13,9 +14,7 @@ const PurchaseResume = ({ cartList }) => {
     });
 
   return (
-    <Box
-      sx={{ px: 4, py: 2, borderRadius: 2, backgroundColor: "grey.400", my: 2 }}
-    >
+    <DarkPanel>
       <Subtitle bold>Resumen de compra</Subtitle>
       <Divider />
       <Typography mt={3}>
@@ -24,7 +23,7 @@ const PurchaseResume = ({ cartList }) => {
       <Typography>
         <strong>TOTAL:</strong> {totalPrice}
       </Typography>
-    </Box>
+    </DarkPanel>
   );
 };
 

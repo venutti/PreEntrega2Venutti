@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getItemById } from "../services/database";
+import { getItemById } from "../../services/database";
 
 import { Box, Skeleton } from "@mui/material";
-import ItemDetail from "./ItemDetail";
+import ItemDetail from "../ItemDetail";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);

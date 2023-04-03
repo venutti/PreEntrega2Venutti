@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
-import ItemListContainer from "./components/ItemListContainer";
-import ItemDetailContainer from "./components/ItemDetailContainer";
-import CartView from "./components/CartView";
-import CheckOut from "./components/CheckOut";
+import ItemListContainer from "./components/pages/ItemListContainer";
+import ItemDetailContainer from "./components/pages/ItemDetailContainer";
+import CartView from "./components/pages/CartView";
+import CheckOut from "./components/pages/CheckOut";
 
 const App = () => {
   return (

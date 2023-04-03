@@ -26,13 +26,20 @@ const CartProvider = ({ children }) => {
     setCartList(newCartList);
   };
 
+  const changeQuantity = (itemId, newQuantity) => {
+    const newCartList = cartList.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setCartList(newCartList);
+  };
+
   const clearList = () => {
     setCartList([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cartList, addToCart, removeItem, clearList }}
+      value={{ cartList, addToCart, removeItem, clearList, changeQuantity }}
     >
       {children}
     </CartContext.Provider>
