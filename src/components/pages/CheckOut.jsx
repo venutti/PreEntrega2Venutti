@@ -11,7 +11,7 @@ import OrderConfirmationAlert from "../alerts/OrderConfirmationAlert";
 import PurchaseResume from "../PurchaseResume";
 
 const CheckOut = () => {
-  const { cartList } = useContext(CartContext);
+  const { cartList, clearCart } = useContext(CartContext);
   const [orderID, setOrderID] = useState("");
 
   if (orderID) return <OrderConfirmationAlert orderID={orderID} />;
@@ -22,6 +22,7 @@ const CheckOut = () => {
     const newOrder = createOrder(cartList, values);
     const newOrderID = await addOrder(newOrder);
     setOrderID(newOrderID);
+    clearCart();
   };
 
   return (

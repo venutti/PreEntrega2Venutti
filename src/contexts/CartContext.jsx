@@ -33,13 +33,13 @@ const CartProvider = ({ children }) => {
     setCartList(newCartList);
   };
 
-  const clearList = () => {
+  const clearCart = () => {
     setCartList([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cartList, addToCart, removeItem, clearList, changeQuantity }}
+      value={{ cartList, addToCart, removeItem, clearCart, changeQuantity }}
     >
       {children}
     </CartContext.Provider>
