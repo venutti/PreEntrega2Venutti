@@ -13,4 +13,7 @@ export const contactFormSchema = Yup.object({
   phone: Yup.string()
     .matches(/^([0-9]){7,14}$/, "Debes ingresar un número de teléfono válido")
     .required("Este campo es obligatorio"),
+  repeatEmail: Yup.string()
+    .oneOf([Yup.ref("email"), null], "Los emails no coinciden")
+    .required("Este campo es obligatorio"),
 });
