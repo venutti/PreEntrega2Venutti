@@ -14,7 +14,9 @@ const ContactForm = ({ onSubmit }) => {
     },
     validationSchema: contactFormSchema,
     onSubmit: async (values, actions) => {
-      await onSubmit(values);
+      // repeatEmail is not part of the contact data
+      const { repeatEmail, ...contactData } = values;
+      await onSubmit(contactData);
       actions.setSubmitting(false);
       actions.resetForm();
     },
