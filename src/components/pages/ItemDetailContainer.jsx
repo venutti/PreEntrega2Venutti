@@ -4,10 +4,11 @@ import { getItemById } from "../../services/database";
 
 import { Box, Skeleton } from "@mui/material";
 import ItemDetail from "../ItemDetail";
+import NotFoundAlert from "../alerts/NotFoudAlert";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id: itemID } = useParams();
 
   const getItem = async () => {
@@ -16,17 +17,18 @@ const ItemDetailContainer = () => {
     setItem(itemData);
     setLoading(false);
   };
+
   useEffect(() => {
     getItem();
   }, [itemID]);
 
+  if (loading) return <Skeleton variant="rounded" width={1000} height={350} />;
+
+  if (!item) return <NotFoundAlert />;
+
   return (
     <Box sx={{ display: "grid", placeContent: "center", padding: 2 }}>
-      {loading ? (
-        <Skeleton variant="rounded" width={1000} height={350} />
-      ) : (
-        <ItemDetail item={item} />
-      )}
+      <ItemDetail item={item} />
     </Box>
   );
 };

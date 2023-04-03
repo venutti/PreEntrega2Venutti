@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
+
 import ItemListContainer from "./components/pages/ItemListContainer";
 import ItemDetailContainer from "./components/pages/ItemDetailContainer";
 import CartView from "./components/pages/CartView";
 import CheckOut from "./components/pages/CheckOut";
+import NotFoundAlert from "./components/alerts/NotFoudAlert";
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="/item/:id" element={<ItemDetailContainer />} />
         <Route path="/cart" element={<CartView />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="*" element={<NotFoundAlert />} />
       </Routes>
     </>
   );
