@@ -20,7 +20,9 @@ const ItemDetail = ({ item }) => {
     quantity === 0 ? (
       <ItemCount stock={item.stock} onAdd={handleAdd} />
     ) : (
-      <GoToCartButton />
+      <Box sx={{ display: "grid", placeContent: "center" }}>
+        <GoToCartButton />
+      </Box>
     );
 
   return (
