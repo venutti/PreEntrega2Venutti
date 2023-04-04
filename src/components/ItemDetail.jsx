@@ -1,19 +1,10 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useContext, useState } from "react";
+import { Box, Stack } from "@mui/material";
 import ItemCount from "./ItemCount";
-import { CartContext } from "../contexts/CartContext";
-import { Link } from "react-router-dom";
-import { CenterFocusStrong } from "@mui/icons-material";
 import GoToCartButton from "./buttons/GoToCartButton";
 import ItemDescription from "./ItemDescription";
+
+import { useContext, useState } from "react";
+import { CartContext } from "../contexts/CartContext";
 
 const ItemDetail = ({ item }) => {
   const { title, description, pictureUrl, price } = item;

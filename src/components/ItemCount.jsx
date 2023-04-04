@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Stack, Typography } from "@mui/material";
-import QuantityButton from "./QuantityButton";
-import AddToCartButton from "./AddToCartButton";
+import QuantityButton from "./buttons/QuantityButton";
+import AddToCartButton from "./buttons/AddToCartButton";
 
 const ItemCount = ({ stock, initial = 1, onAdd }) => {
   const [count, setCount] = useState(initial);
