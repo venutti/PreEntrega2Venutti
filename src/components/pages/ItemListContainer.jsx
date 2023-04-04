@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllItems, getItemsByCategory } from "../../services/database";
 
-import { Grid, Skeleton, Box } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import ItemList from "../ItemList";
+import ItemListSkeleton from "../skeletons/ItemListSkeleton";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id: categoryID } = useParams();
 
   const getProducts = async () => {
@@ -20,19 +21,19 @@ const ItemListContainer = () => {
   };
 
   useEffect(() => {
-    getProducts();
+    // getProducts();
   }, [categoryID]);
 
   return (
-    <Box sx={{ p: 2, display: "grid", placeContent: "center" }}>
+    <Container maxWidth="lg" sx={{ p: 2 }}>
       {loading ? (
-        <Skeleton variant="rounded" width="600px" height="300px" />
+        <ItemListSkeleton />
       ) : (
         <Grid container spacing={2}>
           <ItemList items={products} />
         </Grid>
       )}
-    </Box>
+    </Container>
   );
 };
 
