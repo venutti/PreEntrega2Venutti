@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllItems, getItemsByCategory } from "../../services/database";
 
-import { Grid, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import ItemList from "../ItemList";
 import ItemListSkeleton from "../skeletons/ItemListSkeleton";
+import Title from "../shared/Title";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -26,13 +27,8 @@ const ItemListContainer = () => {
 
   return (
     <Container maxWidth="lg" sx={{ p: 2 }}>
-      {loading ? (
-        <ItemListSkeleton />
-      ) : (
-        <Grid container spacing={2}>
-          <ItemList items={products} />
-        </Grid>
-      )}
+      <Title>LISTA DE PRODUCTOS</Title>
+      {loading ? <ItemListSkeleton /> : <ItemList items={products} />}
     </Container>
   );
 };
