@@ -1,6 +1,6 @@
 import { Card, CardMedia, IconButton, Stack, Typography } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import QuantityButton from "./QuantityButton";
+import QuantityButton from "./buttons/QuantityButton";
 
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
