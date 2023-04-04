@@ -21,7 +21,7 @@ const ItemListContainer = () => {
   };
 
   useEffect(() => {
-    // getProducts();
+    getProducts();
   }, [categoryID]);
 
   return (

@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getItemById } from "../../services/database";
 
-import { Box, Skeleton } from "@mui/material";
+import { Box, Container, Skeleton } from "@mui/material";
 import ItemDetail from "../ItemDetail";
 import NotFoundAlert from "../alerts/NotFoudAlert";
+import ItemDetailSkeleton from "../skeletons/ItemDetailSkeleton";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { id: itemID } = useParams();
 
   const getItem = async () => {
     setLoading(true);
     const itemData = await getItemById(itemID);
+    if (!itemData) setError(true);
     setItem(itemData);
     setLoading(false);
   };
@@ -22,14 +25,12 @@ const ItemDetailContainer = () => {
     getItem();
   }, [itemID]);
 
-  if (loading) return <Skeleton variant="rounded" width={1000} height={350} />;
-
-  if (!item) return <NotFoundAlert />;
+  if (error) return <NotFoundAlert />;
 
   return (
-    <Box sx={{ display: "grid", placeContent: "center", padding: 2 }}>
-      <ItemDetail item={item} />
-    </Box>
+    <Container maxWidth="lg" sx={{ p: 2 }}>
+      {loading ? <ItemDetailSkeleton /> : <ItemDetail item={item} />}
+    </Container>
   );
 };
 
