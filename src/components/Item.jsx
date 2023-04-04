@@ -12,15 +12,19 @@ const Item = ({ item }) => {
   const { id, title, price, pictureUrl } = item;
 
   return (
-    <Card sx={{ maxWidth: 150 }}>
-      <CardActionArea component={RouterLink} to={`/item/${id}`}>
+    <Card sx={{ width: 200, height: 300 }}>
+      <CardActionArea
+        component={RouterLink}
+        to={`/item/${id}`}
+        sx={{ height: "100%" }}
+      >
         <CardMedia component="img" height="200" image={pictureUrl} />
-        <CardContent sx={{ bgcolor: "warning.light" }}>
+        <CardContent sx={{ height: "100%", bgcolor: "warning.light" }}>
           <Typography variant="h6" sx={{ lineHeight: 1.3 }}>
             {title}
           </Typography>
           <Typography
-            variant="body1"
+            variant="body"
             color="success.dark"
           >{`$ ${price}`}</Typography>
         </CardContent>
@@ -30,3 +34,7 @@ const Item = ({ item }) => {
 };
 
 export default Item;
+
+{
+  /*  */
+}
