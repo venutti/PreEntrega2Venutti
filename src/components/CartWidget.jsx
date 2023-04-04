@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 
-const CartWidget = () => {
+const CartWidget = ({ sx }) => {
   const { cartList } = useContext(CartContext);
   const quantityInCart = cartList.reduce(
     (total, item) => total + item.quantity,
@@ -13,13 +13,11 @@ const CartWidget = () => {
   );
 
   return (
-    <Link to="/cart">
-      <IconButton>
-        <Badge badgeContent={quantityInCart} color="error">
-          <ShoppingCartOutlinedIcon sx={{ color: "black" }} />
-        </Badge>
-      </IconButton>
-    </Link>
+    <IconButton component={Link} to="/cart" sx={{ ...sx }}>
+      <Badge badgeContent={quantityInCart} color="error">
+        <ShoppingCartOutlinedIcon sx={{ color: "black" }} />
+      </Badge>
+    </IconButton>
   );
 };
 

@@ -6,6 +6,7 @@ import { Container } from "@mui/material";
 import ItemList from "../ItemList";
 import ItemListSkeleton from "../skeletons/ItemListSkeleton";
 import Title from "../shared/Title";
+import Subtitle from "../shared/Subtitle";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -28,6 +29,7 @@ const ItemListContainer = () => {
   return (
     <Container maxWidth="lg" sx={{ p: 2 }}>
       <Title>LISTA DE PRODUCTOS</Title>
+      {categoryID && <Subtitle>Categoría: {categoryID}</Subtitle>}
       {loading ? <ItemListSkeleton /> : <ItemList items={products} />}
     </Container>
   );
