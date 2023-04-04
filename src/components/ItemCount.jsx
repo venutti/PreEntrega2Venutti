@@ -1,5 +1,7 @@
-import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import { useState } from "react";
+import { Stack, Typography } from "@mui/material";
+import QuantityButton from "./QuantityButton";
+import AddToCartButton from "./AddToCartButton";
 
 const ItemCount = ({ stock, initial = 1, onAdd }) => {
   const [count, setCount] = useState(initial);
@@ -20,44 +22,24 @@ const ItemCount = ({ stock, initial = 1, onAdd }) => {
   };
 
   return (
-    <Box
+    <Stack
+      alignItems="center"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "10px",
+        gap: 1,
       }}
     >
-      <Typography sx={{ transform: "translateY(5px)", color: "#a3a3a3" }}>
+      <Typography sx={{ transform: "translateY(5px)", color: "grey.500" }}>
         {stock} en stock
       </Typography>
 
-      <ButtonGroup color="warning" variant="contained" disableElevation>
-        <Button onClick={decrement}>-</Button>
-        <Box
-          sx={{
-            padding: "5px 30px",
-            display: "grid",
-            placeContent: "center",
-            borderBlockStart: "1px solid",
-            borderBlockEnd: "1px solid",
-            borderColor: "warning.dark",
-          }}
-        >
-          {count}
-        </Box>
-        <Button onClick={increment}>+</Button>
-      </ButtonGroup>
+      <QuantityButton
+        quantity={count}
+        onIncrement={increment}
+        onDecrement={decrement}
+      />
 
-      <Button
-        variant="contained"
-        color="success"
-        disableElevation
-        onClick={handleAdd}
-      >
-        Agregar al carrito
-      </Button>
-    </Box>
+      <AddToCartButton onAdd={handleAdd} />
+    </Stack>
   );
 };
 

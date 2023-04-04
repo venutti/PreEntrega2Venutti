@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getItemById } from "../../services/database";
 
-import { Box, Container, Skeleton } from "@mui/material";
+import { Container } from "@mui/material";
 import ItemDetail from "../ItemDetail";
 import NotFoundAlert from "../alerts/NotFoudAlert";
 import ItemDetailSkeleton from "../skeletons/ItemDetailSkeleton";

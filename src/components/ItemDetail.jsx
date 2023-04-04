@@ -4,65 +4,46 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Stack,
   Typography,
 } from "@mui/material";
 import { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
+import { CenterFocusStrong } from "@mui/icons-material";
+import GoToCartButton from "./buttons/GoToCartButton";
+import ItemDescription from "./ItemDescription";
 
 const ItemDetail = ({ item }) => {
-  if (!item) return null;
-
-  const [quantity, setQuantity] = useState(0);
   const { title, description, pictureUrl, price } = item;
   const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(0);
 
   const handleAdd = (countOnAdd) => {
     setQuantity(countOnAdd);
     addToCart(item, countOnAdd);
   };
 
+  const actionButton =
+    quantity === 0 ? (
+      <ItemCount stock={item.stock} onAdd={handleAdd} />
+    ) : (
+      <GoToCartButton />
+    );
+
   return (
-    <Card sx={{ maxWidth: "1000px", display: "flex", borderRadius: 3 }}>
-      <CardMedia
-        component="img"
-        sx={{ width: "30%", flexShrink: 0 }}
-        image={pictureUrl}
-      />
-      <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Box sx={{ flex: "1 0 auto", padding: 2 }}>
-          <Typography variant="h4">{title}</Typography>
-          <Typography variant="body" color="gray">
-            {description}
-          </Typography>
-          <Typography
-            color="success.dark"
-            variant="h4"
-            sx={{ marginBlockStart: 1 }}
-          >
-            $ {price}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          {quantity === 0 ? (
-            <ItemCount stock={item.stock} onAdd={handleAdd} />
-          ) : (
-            <Link to="/cart">
-              <Button variant="contained" color="warning">
-                Terminar con mi compra
-              </Button>
-            </Link>
-          )}
-        </Box>
-      </CardContent>
-    </Card>
+    <Stack
+      alignItems={{ xs: "center", sm: "start" }}
+      direction={{ xs: "column", sm: "row" }}
+      sx={{ gap: 2 }}
+    >
+      <Box width={300} sx={{ flexShrink: 0 }}>
+        <img src={pictureUrl} alt={title} />
+        {actionButton}
+      </Box>
+      <ItemDescription item={item} />
+    </Stack>
   );
 };
 
